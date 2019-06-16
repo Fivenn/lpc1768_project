@@ -91,7 +91,7 @@ I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc_types.h)(0x58DA7C58)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_clkpwr.h)(0x50867912)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_pinsel.h)(0x50867912)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_libcfg_default.h)(0x50867912)
-F (..\User\main.c)(0x5D026CB9)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --enum_is_int -I..\Libraries\LCP1768_StdPeriph_Driver\include -I..\Libraries\CM3\CoreSupport -I..\Libraries\CM3\DeviceSupport\NXP\LPC17xx -I..\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (..\User\main.c)(0x5D064076)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --enum_is_int -I..\Libraries\LCP1768_StdPeriph_Driver\include -I..\Libraries\CM3\CoreSupport -I..\Libraries\CM3\DeviceSupport\NXP\LPC17xx -I..\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_gpio.h)(0x50867912)
 I (..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\LPC17xx.h)(0x50867912)
 I (..\Libraries\CM3\CoreSupport\core_cm3.h)(0x50867912)
@@ -110,7 +110,6 @@ I (..\User\touch\touch_panel.h)(0x5761022E)
 I (..\User\globaldec.h)(0x590AE04A)
 I (..\User\constantes.h)(0x58E62A42)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h)(0x50867912)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C819B4)
 F (..\User\touch\ili_lcd_general.c)(0x58EDD1EC)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --enum_is_int -I..\Libraries\LCP1768_StdPeriph_Driver\include -I..\Libraries\CM3\CoreSupport -I..\Libraries\CM3\DeviceSupport\NXP\LPC17xx -I..\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx-o .\output\ili_lcd_general.o --omf_browse .\output\ili_lcd_general.crf --depend .\output\ili_lcd_general.d)
 I (..\User\touch\ili_lcd_general.h)(0x50867914)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_gpio.h)(0x50867912)

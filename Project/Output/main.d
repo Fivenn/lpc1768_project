@@ -18,4 +18,3 @@
 .\output\main.o: ..\User\globaldec.h
 .\output\main.o: ..\User\constantes.h
 .\output\main.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h
-.\output\main.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
