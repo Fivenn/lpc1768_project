@@ -2,5 +2,4 @@
 -I C:\Keil\ARM\RV31\INC
 -I C:\Keil\ARM\CMSIS\Include
 -I C:\Keil\ARM\Inc\NXP\LPC17xx
-
 -o .\output\touch_panel.o --omf_browse .\output\touch_panel.crf --depend .\output\touch_panel.d "..\User\touch\touch_panel.c"

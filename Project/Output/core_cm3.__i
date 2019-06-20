@@ -2,5 +2,4 @@
 -I C:\Keil\ARM\RV31\INC
 -I C:\Keil\ARM\CMSIS\Include
 -I C:\Keil\ARM\Inc\NXP\LPC17xx
-
 -o .\output\core_cm3.o --omf_browse .\output\core_cm3.crf --depend .\output\core_cm3.d "..\Libraries\CM3\CoreSupport\core_cm3.c"
