@@ -24,25 +24,52 @@
 #define MATCHVALUE 100 // Valeur du Match utilisée pour la configuration du timer. Le define permet de remplacer à la compilation le nom par sa valeur
 
 unsigned int ingame = 0; // Permet de vérifier si l'on est dans le jeu ou non
-unsigned int score = 0; // Stocke le score d'une partie
+uint8_t score[1]; // Stocke le score d'une partie
 unsigned int chronometer = 0; // Stocke la valeur du chronomètre à un instant T
+uint8_t highscore[1];
 
 //===========================================================//
 // Function
 //===========================================================//
+
+/*
+* Permet de lire une ou plusieurs données en mémoire.
+* @param addr: adresse du périphérique esclave de l'échange
+* @param data: données à écrire en mémoire
+* @param length: Longueur de la donnée à écrire en mémoire
+*/
+void i2c_eeprom_read(uint16_t addr, uint8_t* data, int length) {
+	I2C_M_SETUP_Type TransferCfg; // Initialisation d'une structure permettant d'affecter les valeurs choisies pour configurer le transfert I2C
+	I2C_TRANSFER_OPT_Type Opt; // Initialisation d'une structure permettant d'affecter l'option transfer du I2C
+	uint8_t tx_data[1]; // // Word address a écrire en mémoire afin de pouvoir lire la donnée stockée à cette word address
+	
+	tx_data[0] = (addr&0xff);
+	TransferCfg.sl_addr7bit=((0xA << 3) | (	addr - tx_data[0])); 
+	TransferCfg.tx_data=tx_data; 
+	TransferCfg.tx_length=1; // Longueur de/des données à écrire en mémoire
+	TransferCfg.rx_data=data; // Tableau de données permettant de stocker la valeur lue en mémoire
+	TransferCfg.rx_length=length; // Longueur de la donnée à lire en mémoire
+	TransferCfg.retransmissions_count=0; // Compteur permettant de configurer un nombre de retransmissions en cas d'échec de l'écriture en mémoire
+	
+	Opt=I2C_TRANSFER_POLLING; // Transfert en mode polling
+	
+	CHECK_PARAM(I2C_MasterTransferData(LPC_I2C0, &TransferCfg, Opt) == SUCCESS); // Affectation de notre structure de configuration à la structure de configuration permettant de configurer les valeurs du registre LPC_I2C0
+}
+
 void draw_game() {
 	char chaine[30];
 	
 	dessiner_rect(0, 0, 240, 320, 1, 1, Blue, Blue);
 	dessiner_rect(20 ,10, 200, 40, 1, 1, White, Red);
 	dessiner_rect(20, 70, 80, 40, 1, 0, White, Red);
-	dessiner_rect(140,70, 80, 40, 1, 0, White, Red);
+	dessiner_rect(110,70, 130, 40, 1, 0, White, Red);
 	dessiner_rect(20, 130, 200, 160, 1, 1, White, Yellow);
 	sprintf(chaine, "Game Name");
 	LCD_write_english_string(20, 10, chaine, Black, Red);
-	sprintf(chaine, "Score: ");
+	sprintf(chaine, "Score: 0");
 	LCD_write_english_string(20, 70, chaine, Black, Blue);
-	sprintf(chaine, "High score: ");
+	i2c_eeprom_read(0x50, highscore, 1);
+	sprintf(chaine, "High score: %d", highscore[0]);
 	LCD_write_english_string(140, 70, chaine, Black, Blue);
 	sprintf(chaine, "Hit!");
 	LCD_write_english_string(20, 130, chaine, Black, Yellow);
@@ -57,17 +84,17 @@ void draw_menu() {
 	dessiner_rect(20 ,70, 200, 40, 1, 1, White, Blue);
 	dessiner_rect(20 ,130, 200, 40, 1, 1, White, Blue);
 	sprintf(chaine, "Hit game");
-	LCD_write_english_string(20, 10, chaine, Black, Red);
+	LCD_write_english_string(90, 25, chaine, Black, Red);
 	sprintf(chaine, "New Game");
-	LCD_write_english_string(20, 70, chaine, Black, Blue);
-	i2c_eeprom_read(0x50, high_score, 1);
-	sprintf(chaine, "High Score: ", high_score[0]);
-	LCD_write_english_string(20, 130, chaine, Black, Blue);
+	LCD_write_english_string(90, 85, chaine, Black, Blue);
+	i2c_eeprom_read(0x50, highscore, 1);
+	sprintf(chaine, "High Score: %d", highscore[0]);
+	LCD_write_english_string(90, 145, chaine, Black, Blue);
 }
 	
 void increase_score() {
-		++score;
-		sprintf(chaine, "Score: %d", score);
+		++score[0];
+		sprintf(chaine, "Score: %d", score[0]);
 		LCD_write_english_string(20, 70, chaine, Black, Blue);
 }
 	
@@ -149,30 +176,6 @@ void  i2c_eeprom_write(uint16_t addr, uint8_t* data, int length) {
 	CHECK_PARAM(I2C_MasterTransferData(LPC_I2C0, &TransferCfg, Opt) == SUCCESS); // Affectation de notre structure de configuration à la structure de configuration permettant de configurer les valeurs du registre LPC_I2C0
 }
 
-/*
-* Permet de lire une ou plusieurs données en mémoire.
-* @param addr: adresse du périphérique esclave de l'échange
-* @param data: données à écrire en mémoire
-* @param length: Longueur de la donnée à écrire en mémoire
-*/
-void i2c_eeprom_read(uint16_t addr, uint8_t* data, int length) {
-	I2C_M_SETUP_Type TransferCfg; // Initialisation d'une structure permettant d'affecter les valeurs choisies pour configurer le transfert I2C
-	I2C_TRANSFER_OPT_Type Opt; // Initialisation d'une structure permettant d'affecter l'option transfer du I2C
-	uint8_t tx_data[1]; // // Word address a écrire en mémoire afin de pouvoir lire la donnée stockée à cette word address
-	
-	tx_data[0] = (addr&0xff);
-	TransferCfg.sl_addr7bit=((0xA << 3) | (	addr - tx_data[0])); 
-	TransferCfg.tx_data=tx_data; 
-	TransferCfg.tx_length=1; // Longueur de/des données à écrire en mémoire
-	TransferCfg.rx_data=data; // Tableau de données permettant de stocker la valeur lue en mémoire
-	TransferCfg.rx_length=length; // Longueur de la donnée à lire en mémoire
-	TransferCfg.retransmissions_count=0; // Compteur permettant de configurer un nombre de retransmissions en cas d'échec de l'écriture en mémoire
-	
-	Opt=I2C_TRANSFER_POLLING; // Transfert en mode polling
-	
-	CHECK_PARAM(I2C_MasterTransferData(LPC_I2C0, &TransferCfg, Opt) == SUCCESS); // Affectation de notre structure de configuration à la structure de configuration permettant de configurer les valeurs du registre LPC_I2C0
-}
-
 void initTimer0() {
 	// Pour configurer un timer, il nous faut deux structures.
 	TIM_MATCHCFG_Type configMatch; // Initialisation d'une structure permettant d'affecter les valeurs au Match register pour le timer
@@ -203,25 +206,20 @@ void TIMER0_IRQHandler() { // //Traitant d'interruption. D'après le fichier star
 	LCD_write_english_string(20,300,chaine,Cyan,Blue);
 	sprintf(chaine,"Y: %04d",touch_y);
 	LCD_write_english_string(120,300,chaine,Cyan,Blue);
-	sprintf(chaine,"Y: %04d",chronometer);
-	//LCD_write_english_string(20,200,chaine,Cyan,Blue);
-		
+	
 	//Partie menu
 	if(touch_x >= 650 && touch_x <= 3500 && touch_y >= 2500 && touch_y <= 3000 && ingame == 0) { // Si on appuie sur le bouton "New Game" dans le menu
 		load_game();
 	}
 	
 	//Partie jeu
-	if(ingame == 1 && chronometer == 200) { //Si la partie est terminée
-		uint8_t high_score[1];
-		i2c_eeprom_read(0x50, high_score, 1);
-		if(score > high_score[0]) {
-			uint8_t tab_data[1];
-			sprintf(tab_data, "%d", score);
-			i2c_eeprom_write(0x50, tab_data, 1);
-			chronometer = 0;
-			score = 0;
+	if(ingame == 1 && chronometer == 50) { //Si la partie est terminée
+		i2c_eeprom_read(0x50, highscore, 1);
+		if(score[0] >= highscore[0]) {
+			i2c_eeprom_write(0x50, score, 1);
 		}
+		chronometer = 0;
+		score[0] = 0;
 		load_menu();
 	}
 	if(touch_x >= 650 && touch_x <= 3600 && touch_y >= 600 && touch_y <= 2400 && ingame == 1) { // Si on appuie sur le bouton "Hit!" dans le jeu
@@ -237,7 +235,7 @@ void TIMER0_IRQHandler() { // //Traitant d'interruption. D'après le fichier star
 void reset_high_score() {
 	uint8_t tab_data[1];
 
-	sprintf(tab_data, "%d", 0);
+	tab_data[0]=0;
 	i2c_eeprom_write(0x50, tab_data, 1);
 }
 
@@ -252,20 +250,11 @@ void init_game() {
 //===========================================================//
 // Main
 //===========================================================//
-void v(){}
-int main(void) {
-	uint8_t high_score[1];
-	
+int main(void) {	
 	init_game();
+	reset_high_score();
 	draw_menu();
-	
-	// reset_high_score();
-	i2c_eeprom_read(0x50, high_score, 1);
-	
-	v();
-	
-	
-
+		
 	NVIC->ISER[0]|=(1<<TIMER0_IRQn); //eq. NVIC_EnableIRQ(TIMER0_IRQn). Permet de valider l'interruption du timer0 au niveau du controleur d'interruption NVIC.
 	
 	while(1)

@@ -2,4 +2,5 @@
 -I C:\Keil\ARM\RV31\INC
 -I C:\Keil\ARM\CMSIS\Include
 -I C:\Keil\ARM\Inc\NXP\LPC17xx
---pd "__BUILD_WITH_EXAMPLE__ SETA 1" --pd "__RAM_MODE__ SETA 0" --list .\listing\startup_lpc17xx.lst --xref -o .\output\startup_lpc17xx.o --depend .\output\startup_lpc17xx.d "..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\startup\arm\startup_LPC17xx.s"
+--pd "__BUILD_WITH_EXAMPLE__ SETA 1" --pd "__RAM_MODE__ SETA 0"
+--list .\listing\startup_lpc17xx.lst --xref -o .\output\startup_lpc17xx.o --depend .\output\startup_lpc17xx.d "..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\startup\arm\startup_LPC17xx.s"
