@@ -165,7 +165,7 @@ void TIMER0_IRQHandler() { // //Traitant d'interruption. D'après le fichier star
 	}
 	
 	//Partie jeu
-	if(ingame == 1 && chronometer == 50) { //Si la partie est terminée
+	if(ingame == 1 && chronometer == 100) { //Si la partie est terminée
 		i2c_eeprom_read(0x50, highscore, 1);
 		if(score[0] >= highscore[0]) {
 			i2c_eeprom_write(0x50, score, 1);
@@ -195,13 +195,13 @@ void draw_game() {
 	dessiner_rect(20, 70, 80, 40, 1, 0, White, Red);
 	dessiner_rect(110,70, 130, 40, 1, 0, White, Red);
 	dessiner_rect(20, 130, 200, 160, 1, 1, White, Yellow);
-	sprintf(chaine, "Game Name");
-	LCD_write_english_string(20, 10, chaine, Black, Red);
+	sprintf(chaine, "Hit game");
+	LCD_write_english_string(90, 25, chaine, Black, Red);
 	sprintf(chaine, "Score: 0");
-	LCD_write_english_string(20, 70, chaine, Black, Blue);
+	LCD_write_english_string(25, 80, chaine, Black, Blue);
 	i2c_eeprom_read(0x50, highscore, 1);
 	sprintf(chaine, "High score: %d", highscore[0]);
-	LCD_write_english_string(140, 70, chaine, Black, Blue);
+	LCD_write_english_string(115, 80, chaine, Black, Blue);
 	sprintf(chaine, "Hit!");
 	LCD_write_english_string(20, 130, chaine, Black, Yellow);
 }
@@ -220,7 +220,7 @@ void draw_menu() {
 	LCD_write_english_string(90, 85, chaine, Black, Blue);
 	i2c_eeprom_read(0x50, highscore, 1);
 	sprintf(chaine, "High Score: %d", highscore[0]);
-	LCD_write_english_string(90, 145, chaine, Black, Blue);
+	LCD_write_english_string(70, 145, chaine, Black, Blue);
 }
 
 //=====//
@@ -254,7 +254,7 @@ void reset_high_score() {
 void increase_score() {
 		++score[0];
 		sprintf(chaine, "Score: %d", score[0]);
-		LCD_write_english_string(20, 70, chaine, Black, Blue);
+		LCD_write_english_string(25, 80, chaine, Black, Blue);
 }
 	
 //===========================================================//

@@ -1,4 +1,5 @@
-Projet Microcontroleur - Nicolas Sueur - IMR1
+﻿Projet Microcontroleur - Nicolas Sueur - IMR1
+Lien du projet GitHub en cas de problèmes : https://github.com/Fivenn/lpc1768_project
 
 Ce projet est un jeu qui consiste à taper le plus de fois sur un bouton en un temps restreint
 (5 secondes ici) dans le but d'augmenter un score. Le plus grand score d'une session de jeu 
