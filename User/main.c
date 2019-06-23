@@ -88,8 +88,8 @@ void i2c_eeprom_read(uint16_t addr, uint8_t* data, int length) {
 	I2C_TRANSFER_OPT_Type Opt; // Initialisation d'une structure permettant d'affecter l'option transfer du I2C
 	uint8_t tx_data[1]; // // Word address a écrire en mémoire afin de pouvoir lire la donnée stockée à cette word address
 	
-	tx_data[0] = (addr&0xff);
-	TransferCfg.sl_addr7bit=((0xA << 3) | (	addr - tx_data[0])); 
+	tx_data[0] = (addr&0xff); // On stocke les 8bits de poid faible de addr (l'adresse où l'on veut écrire)
+	TransferCfg.sl_addr7bit=((0xA << 3) | (	addr - tx_data[0])); // addr7bit correspond à l'adresse du périphérique esclave (FM24CL16) + les trois bits de poid fort l'adresse où l'on veut écrire
 	TransferCfg.tx_data=tx_data; 
 	TransferCfg.tx_length=1; // Longueur de/des données à écrire en mémoire
 	TransferCfg.rx_data=data; // Tableau de données permettant de stocker la valeur lue en mémoire
@@ -110,13 +110,13 @@ void i2c_eeprom_read(uint16_t addr, uint8_t* data, int length) {
 void  i2c_eeprom_write(uint16_t addr, uint8_t* data, int length) {
 	I2C_M_SETUP_Type TransferCfg; // Initialisation d'une structure permettant d'affecter les valeurs choisies pour configurer le transfert I2C
 	I2C_TRANSFER_OPT_Type Opt; // Initialisation d'une structure permettant d'affecter l'option de transfert du I2C
-	uint8_t tabData[2];
-	tabData[0]=(addr&0xff);
-	tabData[1]=data[0];
+	uint8_t tabData[2]; // Tableau contenant le reste de la Word address + la donnée à écrire en mémoire
+	tabData[0]=(addr&0xff); // On stocke les 8bits de poid faible de addr (l'adresse où l'on veut écrire)
+	tabData[1]=data[0]; // On stocke la donnée à écrire en mémoire après les 8 bits de poid faible de la Word address
 	
-	TransferCfg.sl_addr7bit=((0xA << 3) | (	addr - tabData[0])); 
+	TransferCfg.sl_addr7bit=((0xA << 3) | (	addr - tabData[0])); // addr7bit correspond à l'adresse du périphérique esclave (FM24CL16) + les trois bits de poid fort l'adresse où l'on veut écrire
 	TransferCfg.tx_data=tabData;
-	TransferCfg.tx_length=length + 1; 
+	TransferCfg.tx_length=length + 1; // Taille de la donnée + 1 pour le reste de la Word address
 	TransferCfg.rx_data=NULL; // NULL car on ne souhaite pas ici recevoir de données de la mémoire
   TransferCfg.retransmissions_count=0;	 // Compteur permettant de configurer un nombre de retransmissions en cas d'échec de l'écriture en mémoire
 	
