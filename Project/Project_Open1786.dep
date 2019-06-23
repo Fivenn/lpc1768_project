@@ -91,7 +91,7 @@ I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc_types.h)(0x5D05CE6C)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_clkpwr.h)(0x5D05CE6C)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_pinsel.h)(0x5D05CE6C)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_libcfg_default.h)(0x5D05CE6C)
-F (..\User\main.c)(0x5D0E258D)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --enum_is_int -I..\Libraries\LCP1768_StdPeriph_Driver\include -I..\Libraries\CM3\CoreSupport -I..\Libraries\CM3\DeviceSupport\NXP\LPC17xx -I..\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
+F (..\User\main.c)(0x5D0F4FF6)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --enum_is_int -I..\Libraries\LCP1768_StdPeriph_Driver\include -I..\Libraries\CM3\CoreSupport -I..\Libraries\CM3\DeviceSupport\NXP\LPC17xx -I..\User-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\NXP\LPC17xx-o .\output\main.o --omf_browse .\output\main.crf --depend .\output\main.d)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_gpio.h)(0x5D05CE6C)
 I (..\Libraries\CM3\DeviceSupport\NXP\LPC17xx\LPC17xx.h)(0x5D05CE6C)
 I (..\Libraries\CM3\CoreSupport\core_cm3.h)(0x5D05CE6C)
@@ -107,6 +107,7 @@ I (..\User\touch\ili_lcd_general.h)(0x5D05CE6C)
 I (..\User\touch\lcd_api.h)(0x5D05CE6C)
 I (..\User\affichagelcd.h)(0x5D05CE6C)
 I (..\User\touch\touch_panel.h)(0x5D05CE6C)
+I (..\User\main.h)(0x5D0F4FE5)
 I (..\User\globaldec.h)(0x5D05CE6C)
 I (..\User\constantes.h)(0x5D05CE6C)
 I (..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h)(0x5D05CE6C)

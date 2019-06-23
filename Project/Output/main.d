@@ -15,6 +15,8 @@
 .\output\main.o: ..\User\affichagelcd.h
 .\output\main.o: ..\User\touch\touch_panel.h
 .\output\main.o: ..\User\touch\ili_lcd_general.h
+.\output\main.o: ..\User\main.h
+.\output\main.o: ..\User\touch\ili_lcd_general.h
 .\output\main.o: ..\User\globaldec.h
 .\output\main.o: ..\User\constantes.h
 .\output\main.o: ..\Libraries\LCP1768_StdPeriph_Driver\include\lpc17xx_i2c.h

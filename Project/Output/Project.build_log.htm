@@ -4,7 +4,7 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\Nicolas Sueur\Documents\dev\lpc1768_project\Project\Project.uvproj
-Project File Date:  06/22/2019
+Project File Date:  06/23/2019
 
 <h2>Output:</h2>
 *** Note: Rebuilding project, since 'Options->Output->Create Batch File' is selected.
@@ -45,17 +45,45 @@ compiling lpc17xx_i2c.c...
 compiling main.c...
 ..\User\affichagelcd.h(9): warning:  #1-D: last line of file ends without a newline
    
-..\User\main.c(67): warning:  #223-D: function "sprintf" declared implicitly
-        sprintf(chaine, "Game Name");
-..\User\main.c(86): warning:  #223-D: function "sprintf" declared implicitly
-        sprintf(chaine, "Hit game");
-..\User\main.c(80): warning:  #177-D: variable "high_score" was declared but never referenced
-        uint8_t high_score[1];
-..\User\main.c(97): warning:  #223-D: function "sprintf" declared implicitly
-                sprintf(chaine, "Score: %d", score[0]);
-..\User\main.c(205): warning:  #223-D: function "sprintf" declared implicitly
+..\User\main.h(11): warning:  #1295-D: Deprecated declaration pin_MemoryConfiguration - give arg types
+  void pin_MemoryConfiguration();
+..\User\main.h(12): warning:  #1295-D: Deprecated declaration pin_ButtonConfiguration - give arg types
+  void pin_ButtonConfiguration();
+..\User\main.h(13): warning:  #1295-D: Deprecated declaration pin_Configuration - give arg types
+  void pin_Configuration();
+..\User\main.h(18): warning:  #1295-D: Deprecated declaration init_i2c_eeprom - give arg types
+  void init_i2c_eeprom();
+..\User\main.h(37): warning:  #1295-D: Deprecated declaration initTimer0 - give arg types
+  void initTimer0();
+..\User\main.h(38): warning:  #1295-D: Deprecated declaration TIMER0_IRQHandler - give arg types
+  void TIMER0_IRQHandler(); // //Traitant d'interruption. D'après le fichier startup.s, l'adresse du traitant d'interruption du timer0 est 17
+..\User\main.h(43): warning:  #1295-D: Deprecated declaration draw_game - give arg types
+  void draw_game();
+..\User\main.h(44): warning:  #1295-D: Deprecated declaration draw_menu - give arg types
+  void draw_menu();
+..\User\main.h(49): warning:  #1295-D: Deprecated declaration init_game - give arg types
+  void init_game();
+..\User\main.h(50): warning:  #1295-D: Deprecated declaration load_game - give arg types
+  void load_game();
+..\User\main.h(51): warning:  #1295-D: Deprecated declaration load_menu - give arg types
+  void load_menu();
+..\User\main.h(52): warning:  #1295-D: Deprecated declaration reset_high_score - give arg types
+  void reset_high_score();
+..\User\main.h(53): warning:  #1-D: last line of file ends without a newline
+  void increase_score();
+..\User\main.h(53): warning:  #1295-D: Deprecated declaration increase_score - give arg types
+  void increase_score();
+..\User\main.c(157): warning:  #223-D: function "sprintf" declared implicitly
         sprintf(chaine,"X: %04d",touch_x);
-..\User\main.c: 6 warnings, 0 errors
+..\User\main.c(198): warning:  #223-D: function "sprintf" declared implicitly
+        sprintf(chaine, "Game Name");
+..\User\main.c(217): warning:  #223-D: function "sprintf" declared implicitly
+        sprintf(chaine, "Hit game");
+..\User\main.c(211): warning:  #177-D: variable "high_score" was declared but never referenced
+        uint8_t high_score[1];
+..\User\main.c(256): warning:  #223-D: function "sprintf" declared implicitly
+                sprintf(chaine, "Score: %d", score[0]);
+..\User\main.c: 20 warnings, 0 errors
 compiling ili_lcd_general.c...
 compiling lcd_api.c...
 compiling english_16x8.c...
@@ -65,9 +93,9 @@ compiling touch_panel.c...
       uint8_t touch_data_tx[BUF_SIZE];
 ..\User\touch\touch_panel.c: 1 warning, 0 errors
 linking...
-Program Size: Code=16100 RO-data=1776 RW-data=24 ZI-data=712  
+Program Size: Code=16088 RO-data=1776 RW-data=24 ZI-data=712  
 FromELF: creating hex file...
-".\Output\Project.axf" - 0 Error(s), 17 Warning(s).
+".\Output\Project.axf" - 0 Error(s), 31 Warning(s).
 Load "C:\\Users\\Nicolas Sueur\\Documents\\dev\\lpc1768_project\\Project\\Output\\Project.axf" 
 Set JLink Project File to "C:\Users\Nicolas Sueur\Documents\dev\lpc1768_project\Project\JLinkSettings.ini"
 * JLink Info: Device "LPC1768" selected (512 KB flash, 32 KB RAM).
@@ -105,20 +133,3 @@ Verify OK.
 </pre>
 </body>
 </html>
- running
-***JLink Error: Can not read register 1 (R1) while CPU is running
-Programming Done.
-Verify OK.
- while CPU is running
-***JLink Error: Can not read register 3 (R3) while CPU is running
-***JLink Error: Can not read register 4 (R4) while CPU is running
-***JLink Error: Can not read register 5 (R5) while CPU is running
-***JLink Error: Can not read register 6 (R6) while CPU is running
-***JLink Error: Can not read register 7 (R7) while CPU is running
-***JLink Error: Can not read register 8 (R8) while CPU is running
-***JLink Error: Can not read register 9 (R9) while CPU is running
-***JLink Error: Can not read register 10 (R10) while CPU is running
-***JLink Error: Can not read register 11 (R11) while CPU is running
-Erase Done.
-Programming Done.
-Verify OK.
